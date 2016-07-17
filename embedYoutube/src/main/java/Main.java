@@ -36,7 +36,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = new VBox();
-//		root.setSpacing(10);
 		root.setPadding(new Insets(10, 10, 10, 10));
 		root.setPrefSize(640, 390);
 
@@ -76,9 +75,6 @@ public class Main extends Application {
 			webView = new WebView();
 			webView.getEngine().load(
 					link
-//				http://www.youtube.com/embed/7xNEXsR-cSQ?autoplay=1
-//				"http://www.youtube.com/embed/7xNEXsR-cSQ?autoplay=1"
-//				"http://player.twitch.tv/?channel=monstercat"
 			);
 		}
 		stage.close();
@@ -102,124 +98,6 @@ public class Main extends Application {
 					stage1.close();
 					try {
 						webView.getEngine().load("");
-						start(new Stage());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if (event.getCode() == KeyCode.ESCAPE) {
-					stage1.setAlwaysOnTop(false);
-					Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application ?");
-					Optional<ButtonType> result = alert.showAndWait();
-					if(result.get() == ButtonType.OK) {
-						Platform.exit();
-					}
-					stage1.setAlwaysOnTop(true);
-				}
-			}
-		});
-
-
-		stage1.setScene(scene);
-		stage1.setAlwaysOnTop(true);
-		if (showBorder) {
-			stage1.initStyle(StageStyle.DECORATED);
-		} else {
-			stage1.initStyle(StageStyle.UNDECORATED);
-		}
-		stage1.show();
-
-	}
-
-
-	//Todo see if it's possible to combine btnClicked and showBorder
-	public void btnClicked(Stage stage, String link) {
-		double x = stage.getX();
-		double y = stage.getY();
-		double width = stage.getWidth();
-		double height = stage.getHeight();
-
-		stage.close();
-		HBox root = new HBox();
-
-		WebView webview = new WebView();
-		webview.getEngine().load(
-				link
-//				http://www.youtube.com/embed/7xNEXsR-cSQ?autoplay=1
-//				"http://www.youtube.com/embed/7xNEXsR-cSQ?autoplay=1"
-//				"http://player.twitch.tv/?channel=monstercat"
-		);
-		root.getChildren().add(webview);
-		root.setPrefSize(width, height);
-
-		Stage stage1 = new Stage();
-		stage1.setX(x);
-		stage1.setY(y);
-
-		Scene scene = new Scene(root);
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.F5) {
-					showBorder(stage1, true);
-				}
-				if (event.getCode() == KeyCode.F4) {
-
-					stage1.close();
-					try {
-						webview.getEngine().load("");
-						start(new Stage());
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				if (event.getCode() == KeyCode.ESCAPE) {
-					stage1.setAlwaysOnTop(false);
-					Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application ?");
-					Optional<ButtonType> result = alert.showAndWait();
-					if(result.get() == ButtonType.OK) {
-						Platform.exit();
-					}
-					stage1.setAlwaysOnTop(true);
-				}
-			}
-		});
-		stage1.setScene(scene);
-		stage1.setAlwaysOnTop(true);
-		stage1.initStyle(StageStyle.UNDECORATED);
-		stage1.show();
-
-	}
-
-	public void showBorder(Stage stage, boolean showBorder) {
-		double x = stage.getX();
-		double y = stage.getY();
-		double width = stage.getWidth();
-		double height = stage.getHeight();
-
-		WebView webview = (WebView) stage.getScene().getRoot().getChildrenUnmodifiable().get(0);
-		stage.close();
-		HBox root = new HBox();
-
-
-		root.getChildren().add(webview);
-		root.setPrefSize(width, height);
-
-		Stage stage1 = new Stage();
-		stage1.setX(x);
-		stage1.setY(y);
-
-		Scene scene = new Scene(root);
-		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			@Override
-			public void handle(KeyEvent event) {
-				if (event.getCode() == KeyCode.F5) {
-					showBorder(stage1, !showBorder);
-				}
-				if (event.getCode() == KeyCode.F4) {
-					stage1.close();
-					try {
-						webview.getEngine().load("");
 						start(new Stage());
 					} catch (Exception e) {
 						e.printStackTrace();
